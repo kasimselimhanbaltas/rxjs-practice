@@ -1,0 +1,35 @@
+<div class="text-center" *ngIf="!selectedUser">
+  no user selected
+</div>
+<div *ngIf="selectedUser" class="row justify-content-center m-0 p-0">
+
+  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="col-9 col-sm-6 col-xl-3 justify-content-center">
+    <div>
+      Edit user: {{selectedUser.name}}
+    </div>
+
+    <label>Name:</label>
+    <input type="text" formControlName="nameInput" class="mb-2 p-1">
+    <div *ngIf="shouldShowError('nameInput', 'required')">Bu alan zorunludur.</div>
+    <div *ngIf="shouldShowError('nameInput', 'minlength')">En az {{ getMinLength('nameInput') }} karakter girmelisiniz.
+    </div>
+
+    <label>UserName:</label>
+    <input type="text" formControlName="nickNameInput" class="mb-2 p-1">
+    <div *ngIf="shouldShowError('nickNameInput', 'required')">Bu alan zorunludur.</div>
+    <div *ngIf="shouldShowError('nickNameInput', 'minlength')">En az {{ getMinLength('nickNameInput') }} karakter
+      girmelisiniz.</div>
+
+    <label>E-mail address:</label>
+    <input type="email" formControlName="emailInput" class="mb-2 p-1">
+    <div *ngIf="shouldShowError('emailInput', 'required')">Bu alan zorunludur.</div>
+    <div *ngIf="shouldShowError('emailInput', 'email')">Geçerli bir e-posta adresi giriniz.</div>
+
+
+    <div class="col-12 row justify-content-center ms-auto me-auto">
+      <button class="btn btn-primary my-2 col-4" type="submit" [disabled]="myForm.invalid">Submit</button>
+
+    </div>
+  </form>
+
+</div>
