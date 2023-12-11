@@ -1,0 +1,4 @@
+<label>Name:</label><br>
+<input type="text" [value]="value" (input)="onChange($event)" class="mb-2 p-1">
+<div *ngIf="shouldShowError('required')">This field is required.</div>
+<div *ngIf="shouldShowError('minlength')">You need to type at least {{ getMinLength() }} characters.</div>

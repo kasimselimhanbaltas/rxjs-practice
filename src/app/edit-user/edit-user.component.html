@@ -1,33 +1,43 @@
+<app-select-user></app-select-user>
 <div class="text-center" *ngIf="!selectedUser">
   no user selected
 </div>
-<div *ngIf="selectedUser" class="row justify-content-center m-0 p-0">
+<div *ngIf="selectedUser" class="row justify-content-center m-0 p-0 ">
 
-  <form [formGroup]="myForm" (ngSubmit)="onSubmit()" class="col-9 col-sm-6 col-xl-3 justify-content-center">
+  <form [formGroup]="userFormGroup" (ngSubmit)="onSubmit()"
+    class="col-9 col-sm-6 col-xl-3 justify-content-center rounded border border-3 p-5">
     <div>
       Edit user: {{selectedUser.name}}
     </div>
 
-    <label>Name:</label>
-    <input type="text" formControlName="nameInput" class="mb-2 p-1">
-    <div *ngIf="shouldShowError('nameInput', 'required')">Bu alan zorunludur.</div>
-    <div *ngIf="shouldShowError('nameInput', 'minlength')">En az {{ getMinLength('nameInput') }} karakter girmelisiniz.
-    </div>
-
+        <!-- 
     <label>UserName:</label>
     <input type="text" formControlName="nickNameInput" class="mb-2 p-1">
     <div *ngIf="shouldShowError('nickNameInput', 'required')">Bu alan zorunludur.</div>
     <div *ngIf="shouldShowError('nickNameInput', 'minlength')">En az {{ getMinLength('nickNameInput') }} karakter
-      girmelisiniz.</div>
+      girmelisiniz.</div> -->
 
-    <label>E-mail address:</label>
-    <input type="email" formControlName="emailInput" class="mb-2 p-1">
-    <div *ngIf="shouldShowError('emailInput', 'required')">Bu alan zorunludur.</div>
-    <div *ngIf="shouldShowError('emailInput', 'email')">Geçerli bir e-posta adresi giriniz.</div>
+    <app-name-input 
+      [value]="userFormGroup.get('nameInput').value"
+      (inputChange)="userFormGroup.get('nameInput').setValue($event)"
+      [errors]="userFormGroup.get('nameInput').errors"
+      ></app-name-input>
+
+    <app-username-input 
+      [value]="userFormGroup.get('nickNameInput').value"
+      (inputChange)="userFormGroup.get('nickNameInput').setValue($event)"
+      [errors]="userFormGroup.get('nickNameInput').errors"
+      ></app-username-input>
+
+    <app-email-input 
+      [value]="userFormGroup.get('emailInput').value"
+      (inputChange)="userFormGroup.get('emailInput').setValue($event)"
+      [errors]="userFormGroup.get('emailInput').errors"
+      ></app-email-input>
 
 
-    <div class="col-12 row justify-content-center ms-auto me-auto">
-      <button class="btn btn-primary my-2 col-4" type="submit" [disabled]="myForm.invalid">Submit</button>
+    <div class="col-12 row justify-content-center ms-auto me-auto mt-3">
+      <button class="btn btn-primary my-2 col-4" type="submit" [disabled]="userFormGroup.invalid">Submit</button>
 
     </div>
   </form>

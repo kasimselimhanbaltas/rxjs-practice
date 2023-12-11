@@ -1,0 +1,6 @@
+<h5 class="text-center">
+  Select a user:
+  <select name="select" [(ngModel)]="selectedUser" (change)="onUserSelected(selectedUser)">
+    <option *ngFor="let user of users" [ngValue]="user">{{ user.name }}</option>
+  </select>
+</h5>

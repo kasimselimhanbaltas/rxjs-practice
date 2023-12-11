@@ -1,14 +1,11 @@
 <div>
   <h1 class="text-center">Selimhan Baltaş</h1>
-  <h3 class="text-center">
+  <!-- <h3 class="text-center">
     This example is for practicing RXJS operators. Select a user to fetch his/her 3. album's photos.
+  </h3> -->
+  <h3 class="text-center">
+    This example is for practicing RXJS operators. Select a user to edit his/her data.
   </h3>
-  <h5 class="text-center">
-    Select a user:
-    <select name="select" [(ngModel)]="selectedUser" (change)="onUserSelected(selectedUser)">
-      <option *ngFor="let user of users" [ngValue]="user">{{ user.name }}</option>
-    </select>
-  </h5>
 
   <!-- <div class="row mx-2">
     <div class="col-2 mt-2" *ngFor="let photo of photos$ | async">
@@ -19,7 +16,8 @@
 </div>
 
 
-<!-- <div class="ms-5">
+<!--
+  <div class="ms-5">
   <div>
     <h2>Component: data <br> Store: @ngrx/store</h2>
 
