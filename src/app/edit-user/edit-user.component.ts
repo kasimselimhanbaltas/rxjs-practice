@@ -10,7 +10,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./edit-user.component.css'],
 })
 export class EditUserComponent implements OnDestroy{
-
+  
+  external: string;
   selectedUser: user | any;
   subscriptions: Subscription = new Subscription();
 
@@ -19,6 +20,7 @@ export class EditUserComponent implements OnDestroy{
     nickNameInput: ['', [Validators.required, Validators.minLength(3)]],
     emailInput: ['', [Validators.required, Validators.email]],
   });
+childval: string;
 
   constructor(private fb: FormBuilder, private userStore: UsersStore) {
 
@@ -49,14 +51,7 @@ export class EditUserComponent implements OnDestroy{
     console.log("form value:", this.userFormGroup.value)
     this.userStore.updateUsers(this.userFormGroup.value, this.selectedUser.id)
   }
-  shouldShowError(controlName: string, errorType: string): boolean {
-    const control = this.userFormGroup.get(controlName);
-    return control?.hasError(errorType) && control.touched;
-  }
 
-  getMinLength(controlName: string): number {
-    return this.userFormGroup.get(controlName)?.errors?.['minlength']?.requiredLength || 0;
-  }
   ngOnDestroy(): void {
     this.subscriptions.unsubscribe()
   }

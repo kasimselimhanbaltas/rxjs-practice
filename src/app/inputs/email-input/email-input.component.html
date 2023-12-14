@@ -1,4 +1,4 @@
 <label>E-mail address:</label>
-<input type="email" [value]="value" (input)="onChange($event)" class="mb-2 p-1">
+<input type="email" [(ngModel)]="emailInput" class="mb-2 p-1">
 <div *ngIf="shouldShowError('required')">This field is required.</div>
 <div *ngIf="shouldShowError('email')">Please type a valid e-mail address.</div>

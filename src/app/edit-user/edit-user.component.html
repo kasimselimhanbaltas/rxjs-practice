@@ -16,22 +16,25 @@
     <div *ngIf="shouldShowError('nickNameInput', 'required')">Bu alan zorunludur.</div>
     <div *ngIf="shouldShowError('nickNameInput', 'minlength')">En az {{ getMinLength('nickNameInput') }} karakter
       girmelisiniz.</div> -->
-
-    <app-name-input 
+<!-- 
+     <app-name-input 
       [value]="userFormGroup.get('nameInput').value"
       (inputChange)="userFormGroup.get('nameInput').setValue($event)"
       [errors]="userFormGroup.get('nameInput').errors"
-      ></app-name-input>
+      ></app-name-input>  -->
+
+    <app-name-input
+      formControlName="nameInput"
+      [errors]="userFormGroup.get('nameInput').errors"
+    ></app-name-input>
 
     <app-username-input 
-      [value]="userFormGroup.get('nickNameInput').value"
-      (inputChange)="userFormGroup.get('nickNameInput').setValue($event)"
+      formControlName="nickNameInput"
       [errors]="userFormGroup.get('nickNameInput').errors"
-      ></app-username-input>
+    ></app-username-input>
 
-    <app-email-input 
-      [value]="userFormGroup.get('emailInput').value"
-      (inputChange)="userFormGroup.get('emailInput').setValue($event)"
+    <app-email-input
+      formControlName="emailInput"
       [errors]="userFormGroup.get('emailInput').errors"
       ></app-email-input>
 
