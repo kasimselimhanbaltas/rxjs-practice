@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
 import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, ValidatorFn } from '@angular/forms';
+import { CustomTextInputAbstractClass } from '../CustomTextInputAbstractClass';
 
 @Component({
   selector: 'app-username-input',
@@ -13,39 +14,8 @@ import { AbstractControl, ControlValueAccessor, NG_VALUE_ACCESSOR, ValidatorFn }
     }
   ]
 })
-export class UsernameInputComponent implements ControlValueAccessor{
+export class UsernameInputComponent extends CustomTextInputAbstractClass<string> {
 
-  @Input() errors: { [key: string]: boolean } = {}
-
-  onChange: any = () => { };
-  onTouch: any = () => { };
-
-  private _userNameInput: string;
-  public get userNameInput(): string {
-    return this._userNameInput;
-  }
-  public set userNameInput(userNameInput: string) {
-    this._userNameInput = userNameInput;
-    this.onChange(userNameInput);
-  }
-
-  writeValue(userNameInput: any) {
-    this.userNameInput = userNameInput;
-  }
-
-  registerOnChange(fn: any) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any) {
-    this.onTouch = fn;
-  }
-
-  shouldShowError(type: string): boolean {
-    return this.errors && this.errors[type];
-  }
-  getMinLength(): number {
-    return 3;
-  }
-
+  @Input() errors: { [key: string]: boolean } = {};
+ 
 }

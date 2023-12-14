@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, forwardRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
+import { CustomTextInputAbstractClass } from '../CustomTextInputAbstractClass';
 
 @Component({
   selector: 'app-email-input',
@@ -13,38 +14,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     }
   ]
 })
-export class EmailInputComponent implements ControlValueAccessor {
+export class EmailInputComponent extends CustomTextInputAbstractClass<string> {
   
   @Input() errors: { [key: string]: boolean } = {};
 
-  onChange: any = () => { };
-  onTouch: any = () => { };
-
-  private _emailInput: string;
-  public get emailInput(): string {
-    return this._emailInput;
-  }
-  public set emailInput(emailInput: string) {
-    this._emailInput = emailInput;
-    this.onChange(emailInput);
-  }
-
-  writeValue(emailInput: any) {
-    this.emailInput = emailInput;
-  }
-
-  registerOnChange(fn: any) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any) {
-    this.onTouch = fn;
-  }
-
-  shouldShowError(type: string): boolean {
-    return this.errors && this.errors[type];
-  }
-  getMinLength(): number {
-    return 3;
-  }
 }

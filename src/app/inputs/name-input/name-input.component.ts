@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { EditUserComponent } from 'src/app/edit-user/edit-user.component';
+import { Component, Input } from '@angular/core';
 import { forwardRef } from '@angular/core';
-import { ControlValueAccessor, NG_VALUE_ACCESSOR,  } from '@angular/forms';
+import { NG_VALUE_ACCESSOR,  } from '@angular/forms';
+import { CustomTextInputAbstractClass } from '../CustomTextInputAbstractClass';
 
 
 @Component({
@@ -16,38 +16,8 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR,  } from '@angular/forms';
     }
   ]
 })
-export class NameInputComponent implements ControlValueAccessor {
+export class NameInputComponent extends CustomTextInputAbstractClass<string> {
 
   @Input() errors: { [key: string]: boolean } = {};
-
-  onChange: any = () => { };
-  onTouch: any = () => { };
-
-  private _nameInput: string;
-  public get nameInput(): string {
-    return this._nameInput;
-  }
-  public set nameInput(nameInput: string) {
-    this._nameInput = nameInput;
-    this.onChange(nameInput);
-  }
-
-  writeValue(nameInput: any) {
-    this.nameInput = nameInput;
-  }
-
-  registerOnChange(fn: any) {
-    this.onChange = fn;
-  }
-
-  registerOnTouched(fn: any) {
-    this.onTouch = fn;
-  }
-
-  shouldShowError(type: string): boolean {
-    return this.errors && this.errors[type];
-  }
-  getMinLength(): number {
-    return 3;
-  }
+ 
 }
