@@ -14,6 +14,7 @@ export class AppComponent{
 
   constructor(private usersStore: UsersStore) {
     this.usersStore.getUsers();
+    this.usersStore.getTodos();
   }
 
   title = 'rxjs-practice';

@@ -33,12 +33,17 @@ export interface user {
   providedIn: 'root',
 })
 export class UserService {
+
   private readonly baseUrl = 'https://jsonplaceholder.typicode.com';
 
   constructor(private http: HttpClient) { }
   
   fetchUsers(): Observable<user[]> {
     return this.http.get<user[]>(`${this.baseUrl}/users`)
+  }
+  fetchTodos(): any {
+    return this.http.get<user[]>(`${this.baseUrl}/todos`)
+    
   }
 
   getThirdAlbumPhotos(userId: number): Observable<any[]> {

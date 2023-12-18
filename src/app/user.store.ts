@@ -7,15 +7,17 @@ import { user } from "./services/userService.service";
 export interface UsersState {
   users: user[];
   selectedUser: user | any;
+  todoList: any[];
 }
 
 @Injectable()
 export class UsersStore extends ComponentStore<UsersState> {
-  
+
   usersLocalList: user[];
+  todoList: any[];
 
   constructor(private service: UserService) {
-    super({selectedUser: {}, users: []});
+    super({selectedUser: {}, users: [], todoList: []});
   }
 
   readonly usersListEffect = this.effect((trigger$: Observable<void>) =>
@@ -31,6 +33,20 @@ export class UsersStore extends ComponentStore<UsersState> {
         }),
     )
   );
+  readonly todoListEffect = this.effect((trigger$: Observable<void>) =>
+  trigger$.pipe(
+    switchMap(() => this.service.fetchTodos()),
+    tap({
+        next: (todos: any[]) => {
+          this.setTodos(todos);
+        },
+        error: (e) => this.logError(e),
+      }),
+  )
+);
+  getTodos(): void {
+    this.todoListEffect();
+  }
   getUsers(): void {
     this.usersListEffect();
   }
@@ -45,12 +61,15 @@ export class UsersStore extends ComponentStore<UsersState> {
 
   readonly setUsers = this.updater((state, payload: user[]) => ({ ...state, users: payload }));
 
-  readonly users$: Observable<user[] > = this.select(state => state.users);
+  readonly users$: Observable<user[]> = this.select(state => state.users);
   
   readonly setSelectedUser = this.updater((state, payload: user) => ({ ...state, selectedUser: payload }));
 
   readonly selectedUser$: Observable<user> = this.select(state => state.selectedUser);
   
+  readonly setTodos = this.updater((state, payload: any[]) => ({ ...state, todoList: payload }));
+
+  readonly todos$: Observable<any[]> = this.select(state => state.todoList);
 
   logError(e: any): void {
     throw new Error("Method not implemented.");

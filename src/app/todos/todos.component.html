@@ -1,0 +1,13 @@
+<div class="todolist text-center" style="">
+    <h1 class="">Todos:</h1>
+    <input [formControl]="todoInput" type="text">
+
+    <div class="errors">
+        <div *ngIf="shouldShowError('required')">Type something to filter</div>
+        <div *ngIf="shouldShowError('minlength')">You need to type at least 3 characters.</div>    
+    </div>
+    <div *ngFor="let todo of todos | titleFilter: todoInput.value">
+    <!-- <div *ngFor="let todo of filteredList"> -->
+        <p class="text-start my-0 py-0 ps-5 ms-5">{{todo.title}}</p>
+    </div>
+</div>

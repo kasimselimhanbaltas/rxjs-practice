@@ -2,7 +2,7 @@
 <div class="text-center" *ngIf="!selectedUser">
   no user selected
 </div>
-<div *ngIf="selectedUser" class="row justify-content-center m-0 p-0 ">
+<div *ngIf="selectedUser.name" class="row justify-content-center m-0 p-0 ">
 
   <form [formGroup]="userFormGroup" (ngSubmit)="onSubmit()"
     class="col-9 col-sm-6 col-xl-3 justify-content-center rounded border border-3 p-5">

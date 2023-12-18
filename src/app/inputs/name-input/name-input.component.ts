@@ -18,6 +18,6 @@ import { CustomTextInputAbstractClass } from '../CustomTextInputAbstractClass';
 })
 export class NameInputComponent extends CustomTextInputAbstractClass<string> {
 
-  @Input() errors: { [key: string]: boolean } = {};
+  //@Input() errors: { [key: string]: boolean } = {};
  
 }

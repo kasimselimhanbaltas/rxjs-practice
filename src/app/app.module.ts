@@ -14,6 +14,10 @@ import { SelectUserComponent } from './select-user/select-user.component';
 import { NameInputComponent } from './inputs/name-input/name-input.component';
 import { UsernameInputComponent } from './inputs/username-input/username-input.component';
 import { EmailInputComponent } from './inputs/email-input/email-input.component';
+import { CustomTextInputAbstractClass } from './inputs/CustomTextInputAbstractClass';
+import { CommonModule } from '@angular/common';
+import { TodosComponent } from './todos/todos.component';
+import { TitleFilterPipe } from './todos/title-filter.pipe';
 
 @NgModule({
   declarations: [
@@ -24,8 +28,12 @@ import { EmailInputComponent } from './inputs/email-input/email-input.component'
     NameInputComponent,
     UsernameInputComponent,
     EmailInputComponent,
+    TodosComponent,
+    TitleFilterPipe,
+
   ],
   imports: [
+    CommonModule,
     ReactiveFormsModule,
     BrowserModule,
     HttpClientModule,
@@ -35,7 +43,7 @@ import { EmailInputComponent } from './inputs/email-input/email-input.component'
     EffectsModule.forRoot([]),
 
   ],
-  providers: [],
-  bootstrap: [AppComponent]
+  providers: [ ],
+  bootstrap: [AppComponent],
 })
 export class AppModule { }

@@ -1,8 +1,14 @@
+import { Component, Input } from "@angular/core";
+
+@Component({
+  template: '',
+  selector: ''
+})
 export abstract class CustomTextInputAbstractClass<T> {
 
-  // @Input() errors: { [key: string]: boolean } = {};
+  @Input() errors: { [key: string]: boolean } = {};
 
-  abstract errors:  { [key: string]: boolean };
+  //abstract errors:  { [key: string]: boolean };
 
   onChange: any = () => { };
   onTouch: any = () => { };
